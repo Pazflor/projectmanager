@@ -17,17 +17,34 @@ export default function Employees() {
     },
   ]);
 
-  const [show, setShow] = useState(false);
+  const [firstNameInput, setFirstNameInput] = useState('');
+  const [lastNameInput, setLastNameInput] = useState('');
+  const [roleOption, setRoleOption] = useState('');
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const firstNameHandler = (e) => {
+    setFirstNameInput(e.target.value);
+  }
 
-  const newEmployee = () => {
+  const lastNameHandler = (e) => {
+    setLastNameInput(e.target.value);
+  }
+
+  const roleHandler = (e) => {
+    setRoleOption(e.target.value);
+  }
+
+  const resetForm = () => {
+    setFirstNameInput('');
+    setLastNameInput('');
+    setRoleOption('');
+  }
+
+  const newEmployee = (e) => {
     const newEmp = {
-      id: 3,
-      firstName: 'Bjørn',
-      lastName: "Olesen",
-      role: "Graphic Designer",
+      id: employees.length + 1,
+      firstName: firstNameInput,
+      lastName: lastNameInput,
+      role: roleOption,
     };
 
     setEmployees((previousEmployeesState) => [
@@ -35,6 +52,20 @@ export default function Employees() {
       ...previousEmployeesState,
     ]);
   };
+
+  const [show, setShow] = useState(false);
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
+
+  const handleSubmit = () => {
+    if (firstNameInput === '' || lastNameInput === '' || roleOption === '') {
+      alert('Fill all fields')
+    } else {
+      setShow(false);
+      newEmployee();
+    }
+  }
+  
 
   return (
     <div>
@@ -58,7 +89,10 @@ export default function Employees() {
           ))}
           <tr>
             <td colSpan="4">
-              <Button variant="link" block onClick={handleShow}>
+              <Button variant="link" block onClick={() => {
+              handleShow();
+              resetForm();
+            }}>
                 Add employee
               </Button>
             </td>
@@ -74,17 +108,18 @@ export default function Employees() {
           <Form>
             <Form.Group controlId="firstNameForm">
               <Form.Label>First Name</Form.Label>
-              <Form.Control type="name" />
+              <Form.Control as="input" type="name" onChange={firstNameHandler}/>
             </Form.Group>
 
             <Form.Group controlId="lastNameForm">
               <Form.Label>Last Name</Form.Label>
-              <Form.Control type="name" />
+              <Form.Control as="input" type="name" onChange={lastNameHandler}/>
             </Form.Group>
 
             <Form.Group controlId="roleForm">
               <Form.Label>Role</Form.Label>
-              <Form.Control as="select">
+              <Form.Control as="select" onChange={roleHandler}>
+                <option>Choose a role</option>
                 <option>Frontend</option>
                 <option>Backend</option>
                 <option>Graphic Designer</option>
@@ -101,8 +136,7 @@ export default function Employees() {
             type="submit"
             variant="primary"
             onClick={() => {
-              handleClose();
-              newEmployee();
+              handleSubmit();
             }}
           >
             Add

@@ -25,6 +25,9 @@ export default function Navigation() {
             <Nav.Link as={Link} to="/projects">
               Projects
             </Nav.Link>
+            <Nav.Link as={Link} to="/test">
+              Test
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
