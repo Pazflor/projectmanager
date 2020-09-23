@@ -1,9 +1,7 @@
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- [x] Vise alle ansatte
+- [x] Legge til ansatt
+- [ ] Vise oversikt over alle kunder
+- [x] Vise alle prosjekter og status på dem
+- [x] Legge til prosjekt
+- [ ] Legge til ansatte på prosjekt
+- [ ] Vise et bestemt prosjekt
