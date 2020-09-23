@@ -17,27 +17,27 @@ export default function Employees() {
     },
   ]);
 
-  const [firstNameInput, setFirstNameInput] = useState('');
-  const [lastNameInput, setLastNameInput] = useState('');
-  const [roleOption, setRoleOption] = useState('');
+  const [firstNameInput, setFirstNameInput] = useState("");
+  const [lastNameInput, setLastNameInput] = useState("");
+  const [roleOption, setRoleOption] = useState("");
 
   const firstNameHandler = (e) => {
     setFirstNameInput(e.target.value);
-  }
+  };
 
   const lastNameHandler = (e) => {
     setLastNameInput(e.target.value);
-  }
+  };
 
   const roleHandler = (e) => {
     setRoleOption(e.target.value);
-  }
+  };
 
   const resetForm = () => {
-    setFirstNameInput('');
-    setLastNameInput('');
-    setRoleOption('');
-  }
+    setFirstNameInput("");
+    setLastNameInput("");
+    setRoleOption("");
+  };
 
   const newEmployee = (e) => {
     const newEmp = {
@@ -58,14 +58,13 @@ export default function Employees() {
   const handleClose = () => setShow(false);
 
   const handleSubmit = () => {
-    if (firstNameInput === '' || lastNameInput === '' || roleOption === '') {
-      alert('Fill all fields')
+    if (firstNameInput === "" || lastNameInput === "" || roleOption === "") {
+      alert("Fill all fields");
     } else {
       setShow(false);
       newEmployee();
     }
-  }
-  
+  };
 
   return (
     <div>
@@ -89,10 +88,14 @@ export default function Employees() {
           ))}
           <tr>
             <td colSpan="4">
-              <Button variant="link" block onClick={() => {
-              handleShow();
-              resetForm();
-            }}>
+              <Button
+                variant="link"
+                block
+                onClick={() => {
+                  handleShow();
+                  resetForm();
+                }}
+              >
                 Add employee
               </Button>
             </td>
@@ -108,12 +111,16 @@ export default function Employees() {
           <Form>
             <Form.Group controlId="firstNameForm">
               <Form.Label>First Name</Form.Label>
-              <Form.Control as="input" type="name" onChange={firstNameHandler}/>
+              <Form.Control
+                as="input"
+                type="name"
+                onChange={firstNameHandler}
+              />
             </Form.Group>
 
             <Form.Group controlId="lastNameForm">
               <Form.Label>Last Name</Form.Label>
-              <Form.Control as="input" type="name" onChange={lastNameHandler}/>
+              <Form.Control as="input" type="name" onChange={lastNameHandler} />
             </Form.Group>
 
             <Form.Group controlId="roleForm">
