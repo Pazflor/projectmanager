@@ -39,7 +39,7 @@ export default function Employees() {
     setRoleOption("");
   };
 
-  const newEmployee = (e) => {
+  const newEmployee = () => {
     const newEmp = {
       id: employees.length + 1,
       firstName: firstNameInput,
@@ -87,7 +87,7 @@ export default function Employees() {
             </tr>
           ))}
           <tr>
-            <td colSpan="4">
+            <td colSpan="5">
               <Button
                 variant="link"
                 block
