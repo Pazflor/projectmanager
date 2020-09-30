@@ -54,7 +54,9 @@ export default function Test() {
               <td>{project.name}</td>
               <td>{project.client}</td>
               <td>
-                <Button variant="warning" disabled>{project.status}</Button>
+                <Button variant="warning" disabled>
+                  {project.status}
+                </Button>
               </td>
               <td>{project.view}</td>
             </tr>
@@ -74,10 +76,19 @@ export default function Test() {
           <Modal.Title>{projects[0].name}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Card style={{border: 'none'}}>
+          <Card style={{ border: "none" }}>
             <Card.Title>Client: {projects[0].client}</Card.Title>
-            <Card.Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam malesuada porta mollis. In sed odio id lectus mattis venenatis. Sed suscipit vehicula sem consequat rutrum. Nulla euismod dignissim neque ornare ultricies. Integer maximus tellus nec placerat vehicula. Sed ultrices ipsum enim. Praesent volutpat condimentum quam, sed imperdiet dolor mattis in.</Card.Text>
-            <Button variant="warning" disabled>{projects[0].status}</Button>
+            <Card.Text>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+              malesuada porta mollis. In sed odio id lectus mattis venenatis.
+              Sed suscipit vehicula sem consequat rutrum. Nulla euismod
+              dignissim neque ornare ultricies. Integer maximus tellus nec
+              placerat vehicula. Sed ultrices ipsum enim. Praesent volutpat
+              condimentum quam, sed imperdiet dolor mattis in.
+            </Card.Text>
+            <Button variant="warning" disabled>
+              {projects[0].status}
+            </Button>
           </Card>
         </Modal.Body>
         <Modal.Footer></Modal.Footer>

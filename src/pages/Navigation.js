@@ -22,6 +22,9 @@ export default function Navigation() {
             <Nav.Link as={Link} to="/employees">
               Employees
             </Nav.Link>
+            <Nav.Link as={Link} to="/clients">
+              Clients
+            </Nav.Link>
             <Nav.Link as={Link} to="/projects">
               Projects
             </Nav.Link>
