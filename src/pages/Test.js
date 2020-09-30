@@ -92,19 +92,6 @@ export default function Test() {
     }
   };
 
-  const [workers, setWorkers] = useState([
-    {
-      id: 1,
-      name: "Thomas",
-      role: "Frontend",
-    },
-    {
-      id: 2,
-      name: "Jonas",
-      role: "Backend",
-    },
-  ]);
-
   return (
     <div>
       <Table striped bordered hover key>
