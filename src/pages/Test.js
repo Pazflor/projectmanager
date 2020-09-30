@@ -3,7 +3,53 @@ import { Table, Button, Modal, Card, Form } from "react-bootstrap";
 
 export default function Test() {
   const [show, setShow] = useState(false);
-  const handleShow = () => setShow(true);
+  const handleShow = (id) => {
+    setShow(true);
+    return (<Modal show={show} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>{projects[id].name}</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Card style={{ border: "none" }}>
+          <Card.Title>Client: {projects[id].client}</Card.Title>
+          <Card.Text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+            malesuada porta mollis. In sed odio id lectus mattis venenatis.
+            Sed suscipit vehicula sem consequat rutrum. Nulla euismod
+            dignissim neque ornare ultricies. Integer maximus tellus nec
+            placerat vehicula. Sed ultrices ipsum enim. Praesent volutpat
+            condimentum quam, sed imperdiet dolor mattis in.
+          </Card.Text>
+          <Button variant="warning" disabled>
+            {projects[id].status}
+          </Button>
+        </Card>
+        <br></br>
+        <Card style={{ border: "none" }}>
+          <Card.Title>Working on this project</Card.Title>
+          <Card.Text>
+            <Table striped bordered hover key>
+              <thead>
+              <tr>
+                <th>Name</th>
+                <th>Role</th>
+              </tr>
+              </thead>
+              <tbody>
+              {workers.map((worker) => (
+                  <tr key={worker.id}>
+                    <td>{worker.name}</td>
+                    <td>{worker.role}</td>
+                  </tr>
+              ))}
+              </tbody>
+            </Table>
+          </Card.Text>
+        </Card>
+      </Modal.Body>
+      <Modal.Footer></Modal.Footer>
+    </Modal>)
+  }
   const handleClose = () => setShow(false);
 
   const [projects, setProjects] = useState([
@@ -11,6 +57,24 @@ export default function Test() {
       id: 1,
       name: "Test Project",
       client: "Microsoft",
+      status: "In progress..",
+      team: [
+        {
+          id: 1,
+          name: "Thomas Nesset",
+          role: "Frontend",
+        },
+        {
+          id: 2,
+          name: "Jonas Say",
+          role: "Backend",
+        },
+      ]
+    },
+    {
+      id: 2,
+      name: "kukukukuku",
+      client: "balleballeballe",
       status: "In progress..",
       team: [
         {
@@ -116,6 +180,13 @@ export default function Test() {
               >
                 New Project
               </Button>
+              <Button
+                  variant="link"
+                  block
+                  onClick={handleShow(e.target.value)}
+              >
+                View project with ID:
+                <input></input></Button>
             </td>
           </tr>
         </tbody>
