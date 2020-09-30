@@ -90,6 +90,14 @@ export default function Test() {
               {projects[0].status}
             </Button>
           </Card>
+          <br></br>
+          <Card style={{ border: "none" }}>
+            <Card.Title>Project Team</Card.Title>
+            <Card.Text>
+              Thomas Nesset <br></br>
+              Jonas Say
+            </Card.Text>
+          </Card>
         </Modal.Body>
         <Modal.Footer></Modal.Footer>
       </Modal>
