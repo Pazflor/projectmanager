@@ -3,53 +3,61 @@ import { Table, Button, Modal, Card, Form } from "react-bootstrap";
 
 export default function Test() {
   const [show, setShow] = useState(false);
-  const handleShow = (id) => {
+
+  const [idProjectView, setIdProjectView] = useState("");
+
+  const handleShow = () => {
     setShow(true);
-    return (<Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>{projects[id].name}</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Card style={{ border: "none" }}>
-          <Card.Title>Client: {projects[id].client}</Card.Title>
-          <Card.Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-            malesuada porta mollis. In sed odio id lectus mattis venenatis.
-            Sed suscipit vehicula sem consequat rutrum. Nulla euismod
-            dignissim neque ornare ultricies. Integer maximus tellus nec
-            placerat vehicula. Sed ultrices ipsum enim. Praesent volutpat
-            condimentum quam, sed imperdiet dolor mattis in.
-          </Card.Text>
-          <Button variant="warning" disabled>
-            {projects[id].status}
-          </Button>
-        </Card>
-        <br></br>
-        <Card style={{ border: "none" }}>
-          <Card.Title>Working on this project</Card.Title>
-          <Card.Text>
-            <Table striped bordered hover key>
-              <thead>
-              <tr>
-                <th>Name</th>
-                <th>Role</th>
-              </tr>
-              </thead>
-              <tbody>
-              {workers.map((worker) => (
-                  <tr key={worker.id}>
-                    <td>{worker.name}</td>
-                    <td>{worker.role}</td>
+
+    console.log(idProjectView - 1);
+
+    return (
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{projects[idProjectView - 1].name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Card style={{ border: "none" }}>
+            <Card.Title>Client: {projects[idProjectView - 1].client}</Card.Title>
+            <Card.Text>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+              malesuada porta mollis. In sed odio id lectus mattis venenatis.
+              Sed suscipit vehicula sem consequat rutrum. Nulla euismod
+              dignissim neque ornare ultricies. Integer maximus tellus nec
+              placerat vehicula. Sed ultrices ipsum enim. Praesent volutpat
+              condimentum quam, sed imperdiet dolor mattis in.
+            </Card.Text>
+            <Button variant="warning" disabled>
+              {projects[idProjectView - 1].status}
+            </Button>
+          </Card>
+          <br></br>
+          <Card style={{ border: "none" }}>
+            <Card.Title>Working on this project</Card.Title>
+            <Card.Text>
+              <Table striped bordered hover key>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Role</th>
                   </tr>
-              ))}
-              </tbody>
-            </Table>
-          </Card.Text>
-        </Card>
-      </Modal.Body>
-      <Modal.Footer></Modal.Footer>
-    </Modal>)
-  }
+                </thead>
+                <tbody>
+                  {workers.map((worker) => (
+                    <tr key={worker.id}>
+                      <td>{worker.name}</td>
+                      <td>{worker.role}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </Card.Text>
+          </Card>
+        </Modal.Body>
+        <Modal.Footer></Modal.Footer>
+      </Modal>
+    );
+  };
   const handleClose = () => setShow(false);
 
   const [projects, setProjects] = useState([
@@ -69,7 +77,7 @@ export default function Test() {
           name: "Jonas Say",
           role: "Backend",
         },
-      ]
+      ],
     },
     {
       id: 2,
@@ -87,7 +95,7 @@ export default function Test() {
           name: "Jonas Say",
           role: "Backend",
         },
-      ]
+      ],
     },
   ]);
 
@@ -169,7 +177,7 @@ export default function Test() {
             </tr>
           ))}
           <tr>
-            <td colSpan="5">
+            <td colSpan="3">
               <Button
                 variant="link"
                 block
@@ -180,62 +188,18 @@ export default function Test() {
               >
                 New Project
               </Button>
-              <Button
-                  variant="link"
-                  block
-                  onClick={handleShow(e.target.value)}
-              >
-                View project with ID:
-                <input></input></Button>
+            </td>
+            <td colSpan="3">
+              <input
+                placeholder="Enter ID"
+                onChange={(event) => setIdProjectView(event.target.value)}></input>
+              <Button variant="link" onClick={handleShow}>
+                View Details
+              </Button>
             </td>
           </tr>
         </tbody>
       </Table>
-
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>{projects[0].name}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Card style={{ border: "none" }}>
-            <Card.Title>Client: {projects[0].client}</Card.Title>
-            <Card.Text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-              malesuada porta mollis. In sed odio id lectus mattis venenatis.
-              Sed suscipit vehicula sem consequat rutrum. Nulla euismod
-              dignissim neque ornare ultricies. Integer maximus tellus nec
-              placerat vehicula. Sed ultrices ipsum enim. Praesent volutpat
-              condimentum quam, sed imperdiet dolor mattis in.
-            </Card.Text>
-            <Button variant="warning" disabled>
-              {projects[0].status}
-            </Button>
-          </Card>
-          <br></br>
-          <Card style={{ border: "none" }}>
-            <Card.Title>Working on this project</Card.Title>
-            <Card.Text>
-              <Table striped bordered hover key>
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Role</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {workers.map((worker) => (
-                    <tr key={worker.id}>
-                      <td>{worker.name}</td>
-                      <td>{worker.role}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            </Card.Text>
-          </Card>
-        </Modal.Body>
-        <Modal.Footer></Modal.Footer>
-      </Modal>
 
       <Modal show={showNewProject} onHide={handleCloseNewProject}>
         <Modal.Header closeButton>
