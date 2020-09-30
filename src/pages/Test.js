@@ -75,6 +75,8 @@ export default function Test() {
       name: projectNameInput,
       client: clientNameInput,
       status: "In progress..",
+      desc: "",
+      team: []
     };
 
     setProjects((previousProjectsState) => [...previousProjectsState, newPro]);
@@ -162,7 +164,6 @@ export default function Test() {
                     <th>Role</th>
                   </tr>
                 </thead>
-                {/*
                 <tbody>
                   {projects[idProjectView].team.map((worker) => (
                     <tr key={worker.id}>
@@ -171,7 +172,6 @@ export default function Test() {
                     </tr>
                   ))}
                 </tbody>
-                  */}
               </Table>
             </Card.Text>
           </Card>
