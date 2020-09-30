@@ -37,6 +37,19 @@ export default function Test() {
     },
   ]);
 
+  const [workers, setWorkers] = useState([
+    {
+      id: 1,
+      name: "Thomas",
+      role: "Frontend",
+    },
+    {
+      id: 2,
+      name: "Jonas",
+      role: "Backend",
+    },
+  ]);
+
   return (
     <div>
       <Table striped bordered hover key>
@@ -94,8 +107,22 @@ export default function Test() {
           <Card style={{ border: "none" }}>
             <Card.Title>Working on this project</Card.Title>
             <Card.Text>
-              Thomas Nesset <br></br>
-              Jonas Say
+              <Table striped bordered hover key>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {workers.map((worker) => (
+                    <tr key={worker.id}>
+                      <td>{worker.name}</td>
+                      <td>{worker.role}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
             </Card.Text>
           </Card>
         </Modal.Body>
