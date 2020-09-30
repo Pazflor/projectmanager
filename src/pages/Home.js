@@ -1,9 +1,10 @@
 import React from 'react'
+import { Jumbotron } from 'react-bootstrap'
 
 export default function Home() {
     return (
         <div>
-            <h1></h1>
+            <Jumbotron>Welcome to project manager!</Jumbotron>
         </div>
     )
 }
