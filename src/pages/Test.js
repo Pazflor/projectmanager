@@ -4,34 +4,39 @@ import { Table, Button, Modal, Card, Form } from "react-bootstrap";
 export default function Test() {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setIdProjectView("0");
+  };
 
   const [idProjectView, setIdProjectView] = useState("0");
 
   const [projects, setProjects] = useState([
     {
-      id: 2,
+      id: 1,
       name: "Test Project",
       client: "Microsoft",
       status: "In progress..",
+      desc: "This is a test app for windows. Blagsdnada",
       team: [
         {
           id: 1,
-          name: "Thomas Nesset",
+          name: "Christian Olsen",
           role: "Frontend",
         },
         {
           id: 2,
-          name: "Jonas Say",
+          name: "Edvard Ingvaldsen",
           role: "Backend",
         },
       ],
     },
     {
-      id: 1,
+      id: 2,
       name: "kukukukuku",
       client: "balleballeballe",
       status: "In progress..",
+      desc: "This is a test app for balle. Blagsdnada",
       team: [
         {
           id: 1,
@@ -140,7 +145,7 @@ export default function Test() {
             <td colSpan="2">
               <input
                 placeholder="Enter ID"
-                onChange={(event) => setIdProjectView(event.target.value)}
+                onChange={(event) => setIdProjectView(event.target.value - 1)}
               ></input>
               <Button variant="link" onClick={handleShow}>
                 View Details
@@ -151,9 +156,42 @@ export default function Test() {
       </Table>
 
       <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
+        <Modal.Header closeButton>
           <Modal.Title>{projects[idProjectView].name}</Modal.Title>
         </Modal.Header>
+        <Modal.Body>
+          <Card style={{ border: "none" }}>
+            <Card.Title>Client: {projects[idProjectView].client}</Card.Title>
+            <Card.Text>
+              {projects[idProjectView].desc}
+            </Card.Text>
+            <Button variant="warning" disabled>
+              {projects[idProjectView].status}
+            </Button>
+          </Card>
+          <br></br>
+          <Card style={{ border: "none" }}>
+            <Card.Title>Working on this project</Card.Title>
+            <Card.Text>
+              <Table striped bordered hover key>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {projects[idProjectView].team.map((worker) => (
+                    <tr key={worker.id}>
+                      <td>{worker.name}</td>
+                      <td>{worker.role}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </Card.Text>
+          </Card>
+        </Modal.Body>
       </Modal>
 
       <Modal show={showNewProject} onHide={handleCloseNewProject}>
