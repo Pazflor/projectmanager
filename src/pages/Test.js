@@ -4,10 +4,7 @@ import { Table, Button, Modal, Card, Form } from "react-bootstrap";
 export default function Test() {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
-  const handleClose = () => {
-    setShow(false);
-    setIdProjectView("0");
-  };
+  const handleClose = () => setShow(false);
 
   const [idProjectView, setIdProjectView] = useState("0");
 
@@ -80,7 +77,7 @@ export default function Test() {
       status: "In progress..",
     };
 
-    setProjects((previousProjectsState) => [newPro, ...previousProjectsState]);
+    setProjects((previousProjectsState) => [...previousProjectsState, newPro]);
   };
 
   const handleSubmitNewProject = () => {
@@ -149,9 +146,7 @@ export default function Test() {
         <Modal.Body>
           <Card style={{ border: "none" }}>
             <Card.Title>Client: {projects[idProjectView].client}</Card.Title>
-            <Card.Text>
-              {projects[idProjectView].desc}
-            </Card.Text>
+            <Card.Text>{projects[idProjectView].desc}</Card.Text>
             <Button variant="warning" disabled>
               {projects[idProjectView].status}
             </Button>
@@ -167,6 +162,7 @@ export default function Test() {
                     <th>Role</th>
                   </tr>
                 </thead>
+                {/*
                 <tbody>
                   {projects[idProjectView].team.map((worker) => (
                     <tr key={worker.id}>
@@ -175,6 +171,7 @@ export default function Test() {
                     </tr>
                   ))}
                 </tbody>
+                  */}
               </Table>
             </Card.Text>
           </Card>
