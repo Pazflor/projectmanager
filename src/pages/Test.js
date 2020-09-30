@@ -3,13 +3,10 @@ import { Table, Button, Modal, Card, Form } from "react-bootstrap";
 
 export default function Test() {
   const [show, setShow] = useState(false);
-  const [idProjectView, setIdProjectView] = useState("");
-
-  const handleShow = () => {
-    setShow(true);
-  };
-
+  const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
+
+  const [idProjectView, setIdProjectView] = useState("0");
 
   const [projects, setProjects] = useState([
     {
@@ -155,7 +152,7 @@ export default function Test() {
 
       <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-          <Modal.Title>{projects[0].name}</Modal.Title>
+          <Modal.Title>{projects[idProjectView].name}</Modal.Title>
         </Modal.Header>
       </Modal>
 
