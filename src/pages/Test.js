@@ -92,7 +92,7 @@ export default function Test() {
           </Card>
           <br></br>
           <Card style={{ border: "none" }}>
-            <Card.Title>Project Team</Card.Title>
+            <Card.Title>Working on this project</Card.Title>
             <Card.Text>
               Thomas Nesset <br></br>
               Jonas Say
