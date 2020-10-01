@@ -7,7 +7,6 @@ import Navigation from "./pages/Navigation";
 import Employees from "./pages/Employees";
 import Projects from "./pages/Projects";
 import Clients from "./pages/Clients";
-import Test from "./pages/Test";
 
 function App() {
   return (
@@ -18,7 +17,6 @@ function App() {
         <Route path="/employees" component={Employees} />
         <Route path="/projects" component={Projects} />
         <Route path="/clients" component={Clients} />
-        <Route path="/test" component={Test} />
       </Switch>
     </BrowserRouter>
   );
