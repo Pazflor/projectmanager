@@ -34,7 +34,7 @@ export default function Test() {
       name: "Test Project",
       client: "Microsoft",
       status: "In progress..",
-      desc: "This is a test app for windows. Blagsdnada",
+      desc: "This is a test app for windows.",
       team: [
         {
           id: 1,
