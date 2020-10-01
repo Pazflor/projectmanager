@@ -9,9 +9,14 @@ export default function Test() {
   const [idProjectView, setIdProjectView] = useState("0");
 
   const viewDetails = (e) => {
+    if (e.target.value > projects.length || e.target.value < 1) {
+      alert("invalid project!")
+      e.target.value = "";
+    } else {
     setIdProjectView(e.target.value - 1)
     handleShow();
     e.target.value = "";
+    }
   }
 
   const [projects, setProjects] = useState([
