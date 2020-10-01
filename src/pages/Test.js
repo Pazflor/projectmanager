@@ -6,14 +6,14 @@ export default function Test() {
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
 
-  const [idProjectView, setIdProjectView] = useState("0");
+  const [idProjectView, setIdProjectView] = useState(0);
 
   const viewDetails = (e) => {
     if (e.target.value > projects.length || e.target.value < 1) {
-      alert("invalid project!")
+      alert("invalid project ID!");
       e.target.value = "";
     } else {
-    setIdProjectView(e.target.value - 1)
+    setIdProjectView(e.target.value - 1);
     handleShow();
     e.target.value = "";
     }
@@ -41,10 +41,10 @@ export default function Test() {
     },
     {
       id: 2,
-      name: "kukukukuku",
-      client: "balleballeballe",
-      status: "In progress..",
-      desc: "This is a test app for balle. Blagsdnada",
+      name: "Project iOS-app",
+      client: "Shortcut",
+      status: "Finished",
+      desc: "This is an app for shortcut.",
       team: [
         {
           id: 1,
