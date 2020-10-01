@@ -4,10 +4,7 @@ import {
   Button,
   Modal,
   Card,
-  Form,
-  Col,
-  InputGroup,
-  FormControl,
+  Form
 } from "react-bootstrap";
 
 export default function Test() {
@@ -39,12 +36,10 @@ export default function Test() {
         {
           id: 1,
           name: "Christian Olsen",
-          role: "Frontend",
         },
         {
           id: 2,
           name: "Edvard Ingvaldsen",
-          role: "Backend",
         },
       ],
     },
@@ -58,19 +53,20 @@ export default function Test() {
         {
           id: 1,
           name: "Thomas Nesset",
-          role: "Frontend",
         },
         {
           id: 2,
           name: "Jonas Say",
-          role: "Backend",
         },
       ],
     },
   ]);
 
   const [showNewProject, setShowNewProject] = useState(false);
-  const handleShowNewProject = () => setShowNewProject(true);
+  const handleShowNewProject = () => {
+    setShowNewProject(true);
+    employees.length = 0;
+  }
   const handleCloseNewProject = () => setShowNewProject(false);
 
   const [projectNameInput, setProjectNameInput] = useState("");
@@ -101,7 +97,7 @@ export default function Test() {
       client: clientNameInput,
       status: "In progress..",
       desc: descInput,
-      team: [],
+      team: employees,
     };
 
     setProjects((previousProjectsState) => [...previousProjectsState, newPro]);
@@ -115,6 +111,35 @@ export default function Test() {
       newProject();
     }
   };
+
+  const [employee, setEmployee] = useState("");
+  const employeeHandler = (e) => {
+    setEmployee(e.target.value);
+  }
+
+  const newEmployee = (e) => {
+    const newEmp = {
+      id: employees.length + 1,
+      name: employee
+    };
+
+    setEmployees((previousEmployeesState) => [
+      ...previousEmployeesState,
+      newEmp,
+    ]);
+    setEmployee("");
+  };
+
+  const [employees, setEmployees] = useState([
+    {
+      id: 1,
+      name: "Thomas"
+    },
+    {
+      id: 2,
+      name: "Jonas"
+    },
+  ]);
 
   return (
     <div>
@@ -183,57 +208,16 @@ export default function Test() {
                 <thead>
                   <tr>
                     <th>Name</th>
-                    <th>Role</th>
                   </tr>
                 </thead>
                 <tbody>
                   {projects[idProjectView].team.map((worker) => (
                     <tr key={worker.id}>
                       <td>{worker.name}</td>
-                      <td>{worker.role}</td>
                     </tr>
                   ))}
                 </tbody>
               </Table>
-
-              <Form>
-                <Form.Row className="align-items-center">
-                  <Col xs="auto">
-                    <Form.Label htmlFor="inlineFormInput" srOnly>
-                      Name
-                    </Form.Label>
-                    <Form.Control
-                      className="mr-sm-2"
-                      id="inlineFormInput"
-                      placeholder="Name"
-                    />
-                  </Col>
-                  <Col xs="auto" className="my-1">
-                    <Form.Label
-                      className="mr-sm-2"
-                      htmlFor="inlineFormCustomSelect"
-                      srOnly
-                    >
-                      Preference
-                    </Form.Label>
-                    <Form.Control
-                      as="select"
-                      className="mr-sm-2"
-                      id="inlineFormCustomSelect"
-                      custom
-                    >
-                      <option value="0">Frontend</option>
-                      <option value="1">Backend</option>
-                      <option value="3">Marketing</option>
-                    </Form.Control>
-                  </Col>
-                  <Col xs="auto">
-                    <Button type="submit" className="mb-2">
-                      Add to team
-                    </Button>
-                  </Col>
-                </Form.Row>
-              </Form>
             </Card.Text>
           </Card>
         </Modal.Body>
@@ -266,6 +250,24 @@ export default function Test() {
               <Form.Control as="input" type="desc" onChange={descHandler} />
             </Form.Group>
           </Form>
+
+          <input placeholder="Name" onChange={employeeHandler}></input>
+          <Button onClick={newEmployee}>Add to team</Button>
+
+          <Table striped bordered hover key>
+            <thead>
+              <tr>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              {employees.map((employee) => (
+                <tr key={employee.id}>
+                  <td>{employee.name}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseNewProject}>
@@ -279,7 +281,7 @@ export default function Test() {
               handleCloseNewProject();
             }}
           >
-            Add
+            Create
           </Button>
         </Modal.Footer>
       </Modal>
