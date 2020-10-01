@@ -4,13 +4,13 @@ import { Table, Button, Modal, Form } from "react-bootstrap";
 export default function Employees() {
   const [employees, setEmployees] = useState([
     {
-      id: 2,
+      id: 1,
       firstName: "Thomas",
       lastName: "Nesset",
       role: "Frontend",
     },
     {
-      id: 1,
+      id: 2,
       firstName: "Jonas",
       lastName: "Say",
       role: "Backend",
@@ -48,8 +48,8 @@ export default function Employees() {
     };
 
     setEmployees((previousEmployeesState) => [
-      newEmp,
       ...previousEmployeesState,
+      newEmp,
     ]);
   };
 

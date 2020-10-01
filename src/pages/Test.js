@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Table, Button, Modal, Card, Form } from "react-bootstrap";
+import {
+  Table,
+  Button,
+  Modal,
+  Card,
+  Form,
+  Col,
+  InputGroup,
+  FormControl,
+} from "react-bootstrap";
 
 export default function Test() {
   const [show, setShow] = useState(false);
@@ -13,11 +22,11 @@ export default function Test() {
       alert("invalid project ID!");
       e.target.value = "";
     } else {
-    setIdProjectView(e.target.value - 1);
-    handleShow();
-    e.target.value = "";
+      setIdProjectView(e.target.value - 1);
+      handleShow();
+      e.target.value = "";
     }
-  }
+  };
 
   const [projects, setProjects] = useState([
     {
@@ -66,6 +75,7 @@ export default function Test() {
 
   const [projectNameInput, setProjectNameInput] = useState("");
   const [clientNameInput, setClientNameInput] = useState("");
+  const [descInput, setDescInput] = useState("");
 
   const projectNameHandler = (e) => {
     setProjectNameInput(e.target.value);
@@ -73,6 +83,10 @@ export default function Test() {
 
   const clientNameHandler = (e) => {
     setClientNameInput(e.target.value);
+  };
+
+  const descHandler = (e) => {
+    setDescInput(e.target.value);
   };
 
   const resetForm = () => {
@@ -86,8 +100,8 @@ export default function Test() {
       name: projectNameInput,
       client: clientNameInput,
       status: "In progress..",
-      desc: "",
-      team: []
+      desc: descInput,
+      team: [],
     };
 
     setProjects((previousProjectsState) => [...previousProjectsState, newPro]);
@@ -181,6 +195,45 @@ export default function Test() {
                   ))}
                 </tbody>
               </Table>
+
+              <Form>
+                <Form.Row className="align-items-center">
+                  <Col xs="auto">
+                    <Form.Label htmlFor="inlineFormInput" srOnly>
+                      Name
+                    </Form.Label>
+                    <Form.Control
+                      className="mr-sm-2"
+                      id="inlineFormInput"
+                      placeholder="Name"
+                    />
+                  </Col>
+                  <Col xs="auto" className="my-1">
+                    <Form.Label
+                      className="mr-sm-2"
+                      htmlFor="inlineFormCustomSelect"
+                      srOnly
+                    >
+                      Preference
+                    </Form.Label>
+                    <Form.Control
+                      as="select"
+                      className="mr-sm-2"
+                      id="inlineFormCustomSelect"
+                      custom
+                    >
+                      <option value="0">Frontend</option>
+                      <option value="1">Backend</option>
+                      <option value="3">Marketing</option>
+                    </Form.Control>
+                  </Col>
+                  <Col xs="auto">
+                    <Button type="submit" className="mb-2">
+                      Add to team
+                    </Button>
+                  </Col>
+                </Form.Row>
+              </Form>
             </Card.Text>
           </Card>
         </Modal.Body>
@@ -207,6 +260,10 @@ export default function Test() {
                 type="name"
                 onChange={clientNameHandler}
               />
+            </Form.Group>
+            <Form.Group controlId="descForm">
+              <Form.Label>Description</Form.Label>
+              <Form.Control as="input" type="desc" onChange={descHandler} />
             </Form.Group>
           </Form>
         </Modal.Body>
