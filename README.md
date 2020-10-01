@@ -5,5 +5,5 @@
 - [x] Vise oversikt over alle kunder
 - [x] Vise alle prosjekter og status på dem
 - [x] Legge til prosjekt
-- [ ] Legge til ansatte på prosjekt
+- [x] Legge til ansatte på prosjekt
 - [x] Vise et bestemt prosjekt
