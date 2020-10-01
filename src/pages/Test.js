@@ -8,6 +8,12 @@ export default function Test() {
 
   const [idProjectView, setIdProjectView] = useState("0");
 
+  const viewDetails = (e) => {
+    setIdProjectView(e.target.value - 1)
+    handleShow();
+    e.target.value = "";
+  }
+
   const [projects, setProjects] = useState([
     {
       id: 1,
@@ -130,12 +136,9 @@ export default function Test() {
             </td>
             <td colSpan="2">
               <input
-                placeholder="Enter ID"
-                onChange={(event) => setIdProjectView(event.target.value - 1)}
+                placeholder="Enter ID to view details"
+                onChange={viewDetails}
               ></input>
-              <Button variant="link" onClick={handleShow}>
-                View Details
-              </Button>
             </td>
           </tr>
         </tbody>
